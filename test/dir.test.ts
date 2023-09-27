@@ -6,27 +6,31 @@ Deno.test("assert works correctly", () => {
   assertEquals(1, 1);
 });
 
-Deno.test("DirectoryDrow test", async () => {
+Deno.test("DirectoryDrow test", () => {
   const dir: {
-    readonly path: string;
+    readonly relativePath: string;
     readonly fullPath: string;
+    readonly fileName: string;
   }[] = [
     {
-      path: "/index.tsx",
+      relativePath: "/index.tsx",
       fullPath: "file:///workspaces/framework-utils/test/routes/index.tsx",
+      fileName: "index.tsx",
     },
     {
-      path: "/sub.js",
+      relativePath: "/sub.js",
       fullPath: "file:///workspaces/framework-utils/test/routes/sub.js",
+      fileName: "sub.js",
     },
     {
-      path: "/api/get.ts",
+      relativePath: "/api/get.ts",
       fullPath: "file:///workspaces/framework-utils/test/routes/api/get.ts",
+      fileName: "get.ts",
     },
     {
-      path: "/api/auth/post.ts",
-      fullPath:
-        "file:///workspaces/framework-utils/test/routes/api/auth/post.ts",
+      relativePath: "/api/auth/post.ts",
+      fullPath: "file:///workspaces/framework-utils/test/routes/api/auth/post.ts",
+      fileName: "post.ts",
     },
   ];
 

@@ -1,10 +1,11 @@
 export function DirectoryDraw(config: {
   base: string; // routes <=> any.config.ts -> import.meta.url + '/routes/'
   subdir?: string | null;
-}): { path: string; fullPath: string }[] {
+}): { relativePath: string; fullPath: string; fileName: string }[] {
   let { base, subdir } = config;
 
-  const result: { path: string; fullPath: string }[] = [];
+  const result: { relativePath: string; fullPath: string; fileName: string }[] =
+    [];
 
   if (!base.endsWith("/")) {
     base += "/";
@@ -30,7 +31,11 @@ export function DirectoryDraw(config: {
     } else {
       const filePath = `/${subdir ? subdir + "/" : ""}` + dirEntry.name;
       const fullPath = new URL(base + dirEntry.name).href;
-      result.push({ path: filePath, fullPath });
+      result.push({
+        relativePath: filePath,
+        fullPath,
+        fileName: dirEntry.name,
+      });
     }
   }
 
