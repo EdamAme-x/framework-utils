@@ -1,2 +1,2 @@
 # framework-utils
-Denoでフレームワークを作るときに役立つ関数
+Functions useful for creating frameworks in Deno.
