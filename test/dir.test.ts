@@ -9,18 +9,24 @@ Deno.test("assert works correctly", () => {
 Deno.test("DirectoryDrow test", async () => {
   const dir: {
     readonly path: string;
+    readonly fullPath: string;
   }[] = [
     {
       path: "/index.tsx",
+      fullPath: "file:///workspaces/framework-utils/test/routes/index.tsx",
     },
     {
       path: "/sub.js",
+      fullPath: "file:///workspaces/framework-utils/test/routes/sub.js",
     },
     {
       path: "/api/get.ts",
+      fullPath: "file:///workspaces/framework-utils/test/routes/api/get.ts",
     },
     {
       path: "/api/auth/post.ts",
+      fullPath:
+        "file:///workspaces/framework-utils/test/routes/api/auth/post.ts",
     },
   ];
 
