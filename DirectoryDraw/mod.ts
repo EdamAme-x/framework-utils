@@ -1,12 +1,10 @@
 export function DirectoryDraw(config: {
   base: string; // routes <=> any.config.ts -> import.meta.url + '/routes/'
   subdir?: string | null;
-}): {
-  readonly path: string; // /routes/index.tsx => /index.tsx
-}[] {
+}): { path: string }[] {
   let { base, subdir } = config;
 
-  const result: any[] = [];
+  const result: { path: string }[] = [];
 
   if (!base.endsWith("/")) {
     base += "/";
@@ -21,18 +19,14 @@ export function DirectoryDraw(config: {
 
   for (const dirEntry of Deno.readDirSync(new URL(base))) {
     if (!dirEntry.isFile) {
-      result.push(
-        DirectoryDraw({
-          base: new URL(base + dirEntry.name).href,
-          subdir: (subdir ? subdir + "/" : "") + dirEntry.name,
-        })
-      );
+      const subdirectory = subdir ? subdir + "/" : "";
+      const subdirectoryPath = new URL(base + dirEntry.name).href;
+      result.push(...DirectoryDraw({ base: subdirectoryPath, subdir: subdirectory + dirEntry.name }));
     } else {
-      result.push({
-        path: `/${subdir ? subdir + "/" : ""}` + dirEntry.name,
-      });
+      const filePath = `/${subdir ? subdir + "/" : ""}` + dirEntry.name;
+      result.push({ path: filePath });
     }
   }
 
-  return result.flat();
+  return result;
 }
