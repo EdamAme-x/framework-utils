@@ -14,17 +14,22 @@ Deno.test("DirectoryDrow test", async () => {
       path: "/index.tsx",
     },
     {
+      path: "/sub.js",
+    },
+    {
       path: "/api/get.ts",
     },
     {
-      path: "/sub.js"
-    }
+      path: "/api/auth/post.ts",
+    },
   ];
 
+  const dir2 = DirectoryDraw({
+    base: import.meta.url.replace("/dir.test.ts", "") + "/routes/",
+  });
+
   console.log(dir);
-  console.log(
-    DirectoryDraw({
-      base: import.meta.url.replace("/dir.test.ts", "") + "/routes/",
-    })
-  );
+  console.log(dir2);
+
+  return assertEquals(dir, dir2);
 });

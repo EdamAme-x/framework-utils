@@ -1,5 +1,3 @@
-import { join } from "https://deno.land/std@0.107.0/path/mod.ts";
-
 export function DirectoryDraw(config: {
   base: string; // routes <=> any.config.ts -> import.meta.url + '/routes/'
   subdir?: string | null;
