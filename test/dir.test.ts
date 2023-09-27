@@ -1,4 +1,4 @@
-import { assert, assertEquals } from "https://deno.land/std/testing/asserts.ts";
+import { assert, assertEquals } from "https://deno.land/std@0.202.0/testing/asserts.ts";
 import { DirectoryDraw } from "../DirectoryDraw/mod.ts";
 
 Deno.test("assert works correctly", () => {
